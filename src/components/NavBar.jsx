@@ -19,7 +19,7 @@ export default function NavBar(){
     return(
         <>
         <nav 
-        className="flex justify center" bg-peru-500
+        className="flex justify center"
         >
 
             <Link href={"/"} className={linkClass("/")}>HOME</Link>

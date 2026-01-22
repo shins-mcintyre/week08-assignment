@@ -1,5 +1,7 @@
 // dynamic route --> "/posts/:postId"
 
+import pg from "pg"
+import {db} from "@/utils/dbConnection"
 import CommentForm from "@/components/CommentForm";
 import LiveComments from "@/components/LiveComments";
 import HikeContent from "@/components/HikeContent";
@@ -12,11 +14,15 @@ import HikeContent from "@/components/HikeContent";
 // ? You can organise this page in the way that works for you (using components, separating concerns, having all code in here... what you prefer)
 
 
-export default function HikeBlogpostPage() {
+export default async function HikeBlogpostPage({params}) {
+
+  const {hikeId} = await params;
+
+  
   return (
     <>
       <section className="hike-id-content-section">
-        <HikeContent/>
+        <HikeContent hikeId={hikeId}/>
       </section>
 <hr></hr>
       <section className="hike-id-comment-section">
