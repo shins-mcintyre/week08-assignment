@@ -1,6 +1,5 @@
 // static route --> "/posts"
 import pg from "pg"
-import HikeThumbnail from "@/components/HikeThumbnail";
 import {db} from "@/utils/dbConnection"
 
 // TODO: render a list of all posts
@@ -19,12 +18,7 @@ export default async function HikeMenuPage() {
         {blogposts.map((blogpost)=>(
           <div key={blogpost.id}>{blogpost.hike_name}</div>
         ))}
-        {/* <HikeThumbnail/>
-        <HikeThumbnail/>
-        <HikeThumbnail/>
-        <HikeThumbnail/>
-        <HikeThumbnail/>
-        <HikeThumbnail/> */}
+
       </div>
 
     </section>

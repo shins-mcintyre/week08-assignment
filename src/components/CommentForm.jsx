@@ -7,40 +7,40 @@ import {redirect} from "next/navigation"
 
 export default function CommentForm(){
 
-    async function handleSubmit(rawformData){
+    async function handleSavePost(formData){
     "use server"
    
     // storing form values --> object
-    console.log(rawformData)
+    console.log(formData)
     
     const formValues ={
-        username: rawformData.get("username"),
-        comments: rawformData.get("comments"),
+        username: formData.get("username"),
+        comment: formData.get("comment"),
 }
+        console.log(formValues)
 
-    console.log(formValues)
-
-    db.query(`INSERT INTO hike_comments (username, comments) VALUES
-    ($1, $2, $3, $4)`, 
+    await db.query(`INSERT INTO hike_comments (username, comment) VALUES
+    ($1, $2)`, 
     [
         formValues.username, 
-        formValues.comments, 
-        ])
+        formValues.comment, 
+        ]);
+        console.log("Post saved!")
 
     revalidatePath("/hike-menu/:hikeId")
 
 }
     return(
         <>
-        <form action ={handleSubmit} 
+        <form action ={handleSavePost} 
         // className={formStyles.commentForm}
         >
 
             <label htmlFor="username">Your Name:</label>
             <input type="text" name="username" required maxLength={255}></input>
 
-            <label htmlFor="comments">Comments:</label>
-            <input type="text" name="comments" required></input>
+            <label htmlFor="comment">Comments:</label>
+            <input type="text" name="comment" required></input>
 
             <button className="bg-amber-600">Submit</button>
         
