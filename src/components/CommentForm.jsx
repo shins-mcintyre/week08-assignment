@@ -5,7 +5,7 @@ import {revalidatePath} from "next/cache"
 import {redirect} from "next/navigation"
 // import formStyles from "./commentForm.module.css";
 
-export default function CommentForm(){
+export default function CommentForm({hikeId}){
 
     async function handleSavePost(formData){
     "use server"
@@ -19,15 +19,16 @@ export default function CommentForm(){
 }
         console.log(formValues)
 
-    await db.query(`INSERT INTO hike_comments (username, comment) VALUES
-    ($1, $2)`, 
+    await db.query(`INSERT INTO hike_comments (username, comment, hike_blog_id) VALUES
+    ($1, $2, $3)`, 
     [
         formValues.username, 
-        formValues.comment, 
+        formValues.comment,
+        hikeId 
         ]);
         console.log("Post saved!")
 
-    revalidatePath("/hike-menu/:hikeId")
+    revalidatePath(`/hike-menu/${hikeId}`)
 
 }
     return(

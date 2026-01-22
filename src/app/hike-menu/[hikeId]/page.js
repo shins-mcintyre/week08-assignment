@@ -27,8 +27,8 @@ export default async function HikeBlogpostPage({params}) {
 <hr></hr>
       <section className="hike-id-comment-section">
         <h3>Share your thoughts and questions below...</h3>
-        <CommentForm/>
-        <LiveComments/>
+        <CommentForm hikeId={hikeId}/>
+        <LiveComments hikeId={hikeId}/>
       </section>
     </>
   );
