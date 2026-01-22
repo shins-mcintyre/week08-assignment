@@ -10,3 +10,7 @@
 /* use CSS modules for specific components */
 /* use Tailwind or bespoke element styling */
 /* If you use CSS modules, either store them together with the component they are styling, or in a separate styles folder */
+
+Header{
+    background-color: tomato;
+}
