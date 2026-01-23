@@ -1,5 +1,6 @@
 import pg from "pg"
 import {db} from "@/utils/dbConnection"
+import hikeContentStyles from "@/styles/hikeContent.module.css"
 
 export default async function HikeContent({hikeId}){
 
@@ -8,7 +9,7 @@ export default async function HikeContent({hikeId}){
     const blogpost = (await db.query(`SELECT * FROM hike_blog WHERE id = $1`, [hikeId])).rows
 
     if (blogpost.length === 0){
-        return <p>Hike not found</p>
+        return <p className={hikeContentStyles.p}>Hike not found</p>
     }
 
     const post = blogpost[0]
@@ -22,7 +23,7 @@ export default async function HikeContent({hikeId}){
     return(
         <>
         {blogpost.map((post)=>(
-            <div key={post.id}>
+            <div key={post.id} className={hikeContentStyles.allHikeContent}>
                 <h2>{post.hike_name}</h2>
                 <p>{formattedDate}</p>
                 <img 

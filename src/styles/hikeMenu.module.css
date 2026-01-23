@@ -1,0 +1,27 @@
+.hikeBox{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background-color: tomato
+}
+
+.hikeMenuContent{
+
+}
+
+.sortControls{
+
+}
+
+.sortControls Link{
+    
+}
+
+.hikeMenuBoxes{}
+
+.h2{
+    background-color: plum;
+}
+
+
+/* hike-boxes-container set up similar to the gallery I made - each div is a square, the img fills up the square, on hover effect to show the name of the blog and date overlaid on top of the photo with the photo blurred, add cursor effect on hover too*/

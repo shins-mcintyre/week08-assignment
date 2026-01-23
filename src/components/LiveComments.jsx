@@ -1,6 +1,7 @@
 import pg from "pg"
 import {db} from "@/utils/dbConnection"
 import { revalidatePath } from "next/cache"
+import commentsStyles from "@/styles/liveComments.module.css"
 
 export default async function LiveComments({hikeId}){
 
@@ -25,15 +26,15 @@ export default async function LiveComments({hikeId}){
     return(
         <>
         {commentPost.map((post)=>(
-            <div key={post.id} className="comment-box">
-                <h3>{post.username} says...</h3>
-                <p>{post.comment}</p>
+            <div key={post.id} className={commentsStyles.commentBox}>
+                <h3 className={commentsStyles.h3}>{post.username} says...</h3>
+                <p className={commentsStyles.p}>{post.comment}</p>
 
                 <form action={handleDeleteComment}>
                     <input type="hidden" name="commentId" value={post.id}/>
                     <button
                         type="submit"
-                        className="text-red-600 hover:underline"
+                        className={commentsStyles.submitButton}
                         // onClick={()=>{
                         //     if(!confirm("Are you sure you want to delete this comment?")){
                         //         event.preventDefault()

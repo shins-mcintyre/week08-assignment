@@ -1,16 +1,37 @@
 @import "tailwindcss";
 
+/* import font */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bgColour: #f0fcf9;
+  --fontColour: #2d1919;
+  --darkAccent: #7a6969;
+  --lightAccent: #d1b8b8;
+  --font: monospace;
 }
 
 /* STYLING GUIDELINES */
-/* media queries go in the globals */
+/* add media queries */
 /* use CSS modules for specific components */
 /* use Tailwind or bespoke element styling */
-/* If you use CSS modules, either store them together with the component they are styling, or in a separate styles folder */
 
-Header{
-    background-color: tomato;
+
+
+body{
+  background-color: var(--bgColour);
+  color: var(--fontColour);
+  font-family: var(--font)
 }
+
+header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

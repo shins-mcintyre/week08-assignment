@@ -3,6 +3,7 @@
 
 import Link from "next/link"
 import {usePathname} from "next/navigation"
+import navBarStyles from "@/styles/navbar.module.css"
 
 
 // !Figure out a way to change where the underline on the navbar is depending on the page
@@ -19,7 +20,7 @@ export default function NavBar(){
     return(
         <>
         <nav 
-        className="flex justify center"
+        className={navBarStyles.nav}
         >
 
             <Link href={"/"} className={linkClass("/")}>HOME</Link>
