@@ -1,10 +1,20 @@
 import pg from "pg"
 import {db} from "@/utils/dbConnection"
+import { revalidatePath } from "next/cache"
 
 export default async function LiveComments({hikeId}){
 
     const commentPost = (await db.query(
         `SELECT * FROM hike_comments WHERE hike_blog_id=$1`, [hikeId])).rows
+
+        async function handleDeleteComment(formData){
+            "use server";
+            const commentId = formData.get("commentId");
+            await db.query(
+                `DELETE FROM hike_comments WHERE id=$1`, [commentId]
+            )
+            revalidatePath(`/hike-menu/${hikeId}`)
+        }
 
     if (commentPost.length === 0){
         return <p>No comments yet, be the first to share something!</p>
@@ -15,9 +25,24 @@ export default async function LiveComments({hikeId}){
     return(
         <>
         {commentPost.map((post)=>(
-            <div key={post.id}>
-            <h3>{post.username} says...</h3>
-            <p>{post.comment}</p>
+            <div key={post.id} className="comment-box">
+                <h3>{post.username} says...</h3>
+                <p>{post.comment}</p>
+
+                <form action={handleDeleteComment}>
+                    <input type="hidden" name="commentId" value={post.id}/>
+                    <button
+                        type="submit"
+                        className="text-red-600 hover:underline"
+                        // onClick={()=>{
+                        //     if(!confirm("Are you sure you want to delete this comment?")){
+                        //         event.preventDefault()
+                        //     }
+                        // }}
+                        >
+                            Delete
+                        </button>
+                </form>
             </div>
         ))}
         
